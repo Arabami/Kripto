@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, send_file
 import os
-from cipher_algorithms import vigenere, vigenere_auto, vigenere_extended, affine, playfair, hill
+from cipher_algorithms import vigenere, vigenere_auto, vigenere_extended, affine, playfair, hill, gronsfeld
 import io
 from werkzeug.utils import secure_filename
 
@@ -91,6 +91,9 @@ def index():
                 nums = list(map(int, key.split(',')))
                 key_matrix = [nums[:2], nums[2:]]
                 result = hill.encrypt(plaintext, key_matrix) if mode == "encrypt" else hill.decrypt(plaintext, key_matrix)
+            
+            elif cipher_type == "gronsfeld":
+                result = gronsfeld.encrypt(plaintext, key) if mode == "encrypt" else gronsfeld.decrypt(plaintext, key)
 
             result = format_output(result, group_5)
             app.config["last_result"] = result

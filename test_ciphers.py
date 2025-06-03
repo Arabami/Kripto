@@ -8,6 +8,7 @@ from vigenere_extended import encrypt as vigenere_extended_encrypt, decrypt as v
 from affine import encrypt as affine_encrypt, decrypt as affine_decrypt
 from playfair import encrypt as playfair_encrypt, decrypt as playfair_decrypt
 from hill import encrypt as hill_encrypt, decrypt as hill_decrypt
+from gronsfeld import encrypt as gronsfeld_encrypt, decrypt as gronsfeld_decrypt
 import numpy as np
 
 def test_vigenere():
@@ -58,6 +59,14 @@ def test_hill():
     print(f"Hill Encrypt: {encrypted}")
     print(f"Hill Decrypt: {decrypted}")
 
+def test_gronsfeld():
+    text = "HELLO"
+    key  = "31415"
+    encrypted = gronsfeld_encrypt(text, key)
+    decrypted = gronsfeld_decrypt(encrypted, key)
+    print(f"Gronsfeld Encrypt : {encrypted}")
+    print(f"Gronsfeld Decrypt : {decrypted}")
+
 if __name__ == "__main__":
     print("Testing Vigenere Cipher:")
     test_vigenere()
@@ -71,3 +80,5 @@ if __name__ == "__main__":
     test_playfair()
     print("\nTesting Hill Cipher:")
     test_hill()
+    print("\nTesting Gronsfeld Cipher:")
+    test_gronsfeld()
