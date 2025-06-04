@@ -3,6 +3,7 @@ import os
 from cipher_algorithms import vigenere, vigenere_auto, vigenere_extended, affine, playfair, hill, gronsfeld
 import io
 from werkzeug.utils import secure_filename
+import math 
 
 app = Flask(__name__)
 app.secret_key = 'some_secret_key'
@@ -89,7 +90,8 @@ def index():
 
             elif cipher_type == "hill":
                 nums = list(map(int, key.split(',')))
-                key_matrix = [nums[:2], nums[2:]]
+                size = int(math.sqrt(len(nums)))
+                key_matrix = [nums[i:i+size] for i in range(0, len(nums), size)]
                 result = hill.encrypt(plaintext, key_matrix) if mode == "encrypt" else hill.decrypt(plaintext, key_matrix)
             
             elif cipher_type == "gronsfeld":
