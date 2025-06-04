@@ -53,7 +53,7 @@ def test_playfair():
 
 def test_hill():
     text = "HELLO"
-    key_matrix = np.array([[6, 24], [1, 16]])  # 2x2 matrix
+    key_matrix = np.array([[3,3,2],[5,6,7],[1,2,3]])  # 3x3 matrix
     encrypted = hill_encrypt(text, key_matrix)
     decrypted = hill_decrypt(encrypted, key_matrix)
     print(f"Hill Encrypt: {encrypted}")
